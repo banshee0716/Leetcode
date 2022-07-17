@@ -1,12 +1,11 @@
-class Solution(object):
-    def kInversePairs(self, N, K):
-        MOD = 10**9 + 7
-        ds = [0] + [1] * (K + 1)
-        for n in xrange(2, N+1):
-            new = [0]
-            for k in xrange(K+1):
-                v = ds[k+1]
-                v -= ds[k-n+1] if k >= n else 0
-                new.append( (new[-1] + v) % MOD )
-            ds = new
-        return (ds[K+1] - ds[K]) % MOD
+class Solution:
+    def kInversePairs(self, n: int, k: int) -> int:
+        dp = [[1] * (k+1) for _ in range(n+1)]
+        sp = [[1] * (k+1) for _ in range(n+1)]
+        N = 10**9 + 7
+        
+        for i in range(1,n+1):
+            for j in range(1,k+1):
+                dp[i][j] = sp[i-1][j] if j < i else (sp[i-1][j] - sp[i-1][j-i]) % N
+                sp[i][j] = (sp[i][j-1] + dp[i][j]) % N
+        return dp[-1][-1]
