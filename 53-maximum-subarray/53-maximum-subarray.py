@@ -5,3 +5,5 @@ class Solution:
                 nums[i] += nums[i-1]
                 
         return max(nums)
+    
+    #This is Kadane's algorithm
