@@ -15,7 +15,9 @@ func movesToStamp(stamp string, target string) []int {
         }
         if stamped == c { return []int{} }
     }
-    for l, r := 0, len(ans) - 1; l < r; l, r = l + 1, r - 1 { ans[l], ans[r] = ans[r], ans[l] }
+    for l, r := 0, len(ans) - 1; l < r; l, r = l + 1, r - 1 { 
+        ans[l], ans[r] = ans[r], ans[l] 
+    }
     return ans
 }
 
