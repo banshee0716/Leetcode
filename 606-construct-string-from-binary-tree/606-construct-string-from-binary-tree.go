@@ -21,3 +21,5 @@ func tree2str(root *TreeNode) string {
     
     return fmt.Sprintf("%v", root.Val) + left + right
 }
+
+//簡單的preorder，直接手刻一個出來就好
