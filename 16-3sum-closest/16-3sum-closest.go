@@ -2,8 +2,8 @@ func threeSumClosest(nums []int, target int) int {
     if len(nums) < 3{
         return -1
     }
-    sort.Ints(nums)
-    smallestDiff := 1 << 31
+    sort.Ints(nums)//先sort方便雙指針操作
+    smallestDiff := 1 << 31//32位的最小值
     for i := 0; i < len(nums); i++{
         left, right := i+1, len(nums)-1
         for left < right{
