@@ -6,10 +6,9 @@
  * }
  */
 func getDecimalValue(head *ListNode) int {
-    var out int	
+    out := 0
     for head != nil{
-        out <<= 1
-        out |= head.Val
+        out = (out*2) +head.Val
         head = head. Next
     }
     return out
