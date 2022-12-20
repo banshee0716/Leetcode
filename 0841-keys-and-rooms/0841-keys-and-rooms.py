@@ -1,12 +1,15 @@
 class Solution:
     def canVisitAllRooms(self, rooms):
-        dfs = [0]
-        seen = set(dfs)
-        while dfs:
-            i = dfs.pop()
-            for j in rooms[i]:
-                if j not in seen:
-                    dfs.append(j)
-                    seen.add(j)
-                    if len(seen) == len(rooms): return True
-        return len(seen) == len(rooms)
+        visited = set([0])
+        
+        def dfs(room):
+            for neib in rooms[room]:
+                if neib not in visited:
+                    visited.add(neib)
+                    dfs(neib)
+                    
+        dfs(0)
+        return len(visited) == len(rooms)    
+    
+    # Given an array rooms where rooms[i] is the set of keys that you can obtain if you visited room i, 
+    # return true if you can visit all the rooms, or false otherwise.
