@@ -1,10 +1,15 @@
-
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        b = [0] * len(prices)
-        s = [0] * len(prices)
-        b[0] = -prices[0]
-        for i in range(1, len(prices)):
-            b[i] = max(b[i - 1], s[i - 2] - prices[i])
-            s[i] = max(s[i - 1], b[i - 1] + prices[i])
-        return s[-1]
+        # DP
+        buy = [0] * len(prices)
+        sell = [0] * len(prices)
+        buy[0] = -prices[0] #
+        for i in range(1,len(prices)):
+            buy[i] = max(buy[i-1], sell[i-2] - prices[i])
+            sell[i] = max(sell[i-1], buy[i-1] + prices[i])
+            
+        return sell[-1]
+            
+            
+            
+        #After you sell your stock, you cannot buy stock on the next day (i.e., cooldown one day).
