@@ -4,6 +4,7 @@ class Solution:
         for c in w:
             out[ord(c)-ord('a')]+=1
         return out
+    
     def findAnagrams(self, s: str, p: str) -> List[int]:
         m = len(p)
         ps = self.countarr(p)
