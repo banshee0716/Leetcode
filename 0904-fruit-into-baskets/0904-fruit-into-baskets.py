@@ -14,7 +14,3 @@ class Solution:
             
         #integer array fruits where fruits[i] is the type of fruit the ith tree produces.
         #有兩個籃子,每個籃子只能放一種水果,如果走到不是那個種類的話就要跳出
-        
-        
-        
-        
