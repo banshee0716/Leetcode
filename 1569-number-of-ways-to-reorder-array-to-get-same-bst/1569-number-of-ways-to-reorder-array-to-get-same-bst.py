@@ -1,8 +1,27 @@
 class Solution:
     def numOfWays(self, nums: List[int]) -> int:
-        def f(nums):
-            if len(nums) <= 2: return 1
-            left = [v for v in nums if v < nums[0]]
-            right = [v for v in nums if v > nums[0]]
+        def f(nums):  # 定義子問題
+            if len(nums) <= 2:  # 當子問題的節點數量小於等於2時，只有一種可能的二叉搜尋樹
+                return 1
+            left = [v for v in nums if v < nums[0]]  # 找出所有小於根節點的節點
+            right = [v for v in nums if v > nums[0]]  # 找出所有大於根節點的節點
+            # 對左右子樹的節點數進行組合計算，並與左子樹和右子樹的可能的二叉搜尋樹的數量相乘
             return comb(len(left)+len(right), len(right)) * f(left) * f(right)
+        # 減1是因為題目要求的是除了本身以外的所有可能的二叉搜尋樹的數量，對10^9+7取模是為了防止數值過大
         return (f(nums)-1) % (10**9+7)
+
+"""
+解題思路：
+
+1. 如果數組的元素數量小於等於2，那麼只有一種可能的二叉搜尋樹。
+2. 否則，我們將數組拆分為兩個子數組，一個包含所有小於根節點的元素，一個包含所有大於根節點的元素。
+3. 對於每個子數組，我們計算其可能的二叉搜尋樹的數量，並將這些數量相乘。
+4. 最後，我們使用組合數學的方法計算所有可能的左右子樹的組合，並返回結果。
+
+時間複雜度：
+O(n^2)。每個節點都需要計算其左子樹和右子樹的可能數量，並且我們需要遍歷所有的節點。
+
+空間複雜度：
+O(n)。我們需要保存每個節點的左子樹和右子樹的數組。
+    
+"""
