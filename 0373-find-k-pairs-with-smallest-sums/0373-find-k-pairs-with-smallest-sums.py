@@ -1,10 +1,14 @@
 class Solution:
-    def kSmallestPairs(self, nums1: List[int], nums2: List[int], k: int) -> List[List[int]]:
+    def kSmallestPairs(
+        self, nums1: List[int], nums2: List[int], k: int
+    ) -> List[List[int]]:
         queue = []
+
         def push(i, j):
             if i < len(nums1) and j < len(nums2):  # 確保i和j都在數組的範圍內
                 # 將數對的和以及數對的索引存入最小堆中
                 heapq.heappush(queue, [nums1[i] + nums2[j], i, j])
+
         # 從數組的開始位置開始
         push(0, 0)
         pairs = []
@@ -15,9 +19,11 @@ class Solution:
             push(i, j + 1)  # 將下一個可能的數對加入堆中
             if j == 0:  # 如果我們正在處理的是第一個數組的元素
                 push(i + 1, 0)  # 將下一個可能的數對加入堆中
+
         return pairs
 
-        #有n組，透過heap來儲存有可能的組合，設計一個儲存最多k個的max heap，如果對方大於這個數值就踢掉
+        # 有n組，透過heap來儲存有可能的組合，設計一個儲存最多k個的max heap，如果對方大於這個數值就踢掉
+
 
 """
 解題思路：
@@ -35,13 +41,5 @@ O(k log k)。我們需要從堆中彈出k個元素，每次彈出元素的時間
 
 空間複雜度：
 O(k)。我們在堆中存儲的元素最多為k個，因此空間複雜度為O(k)。
-
-
-
-
-Was this response better or worse?
-Better
-Worse
-
 
 """
