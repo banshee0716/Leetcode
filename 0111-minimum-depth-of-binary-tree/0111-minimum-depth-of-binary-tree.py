@@ -5,18 +5,24 @@
 #         self.left = left
 #         self.right = right
 
+
 class Solution:
     def minDepth(self, root: TreeNode) -> int:
+        # 如果節點為空，則返回0
         if not root:
             return 0
         
+        # 遞迴地找出左子樹和右子樹的最小深度
         left = self.minDepth(root.left)
         right = self.minDepth(root.right)
         
+        # 如果節點的左子樹和右子樹都存在，則返回左子樹和右子樹的最小深度+1
         if root.left and root.right:
             return min(left, right) + 1
         
+        # 否則，返回左子樹和右子樹的最大深度+1
         return max(left, right) + 1
+
 
 """
 時間複雜度為 O(n)
