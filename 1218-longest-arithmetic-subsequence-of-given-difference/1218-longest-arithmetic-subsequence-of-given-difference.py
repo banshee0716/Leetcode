@@ -22,11 +22,16 @@ class Solution:
         return max_length
 
 """
-1. 我們遍歷輸入的數組nums。
 
-2. 對於每一個數字，我們查看其前一個等差數字（即num - difference）在dp中是否存在。如果存在，我們就知道我們可以在這個等差子序列後面再加上這個數字，所以dp[num]應該是dp[num - difference] + 1。如果不存在，這個數字就會開始一個新的等差子序列。
+1. 該代碼遍歷nums列表，對於每個數字num，它檢查dp字典中是否存在前一個數字num - difference。如果存在num - difference，這意味著存在以num - difference結尾的子序列。
 
-3. 我們同時記錄下最長的等差子序列的長度。
+2. 在這種情況下，代碼通過將num包含在末尾來擴展子序列。它將dp[num]賦值為dp[num - difference] + 1，表示以num結尾的子序列的長度比以num - difference結尾的子序列長度多1。
+
+3.如果dp字典中不存在num - difference，則意味著不存在以num - difference結尾的先前子序列。在這種情況下，代碼將dp[num]初始化為1，表示該子序列只包含num。
+
+4.在遍歷過程中，代碼還跟踪迄今為止找到的最大長度。它使用max函數更新max_length，將以num結尾的子序列長度與當前最大長度進行比較。
+
+5. 在遍歷nums列表中的所有數字之後，代碼返回最大長度，該最大長度表示具有給定差值的最長等差子序列的長度。
 
 
 時間複雜度是O(N)，其中N是數組nums的長度，因為我們需要遍歷一次數組。
