@@ -1,22 +1,23 @@
 class Solution:
     def findNumberOfLIS(self, nums: List[int]) -> int:
         if not nums: 
-            return 0
+            return 0  # 如果數字序列為空，則直接返回0
         
         n = len(nums)
-        dp, cnt = [1] * n, [1] * n  # dp[i]: 長度, cnt[i]: 數量
-        m = 0  # 最長子序列的長度
+        dp, cnt = [1] * n, [1] * n  # 初始化dp和cnt列表，初始值都為1
+        m = 0  # 最長遞增子序列的長度
 
         for i in range(n):
             for j in range(i):
                 if nums[j] < nums[i]:
                     if dp[i] < dp[j] + 1:
-                        dp[i], cnt[i] = dp[j] + 1, cnt[j]
+                        dp[i], cnt[i] = dp[j] + 1, cnt[j]  # 找到更長的遞增子序列，更新dp[i]和cnt[i]
                     elif dp[i] == dp[j] + 1:
-                        cnt[i] += cnt[j]
-            m = max(m, dp[i])
+                        cnt[i] += cnt[j]  # 找到和當前最長遞增子序列一樣長的新的遞增子序列，更新cnt[i]
+            m = max(m, dp[i])  # 更新最長遞增子序列的長度
 
-        return sum(c for l, c in zip(dp, cnt) if l == m)
+        return sum(c for l, c in zip(dp, cnt) if l == m)  # 返回與最長遞增子序列相對應的數量的總和
+
 
 """
 
