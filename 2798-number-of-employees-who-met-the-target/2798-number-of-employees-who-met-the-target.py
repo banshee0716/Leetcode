@@ -1,10 +1,6 @@
 class Solution:
     def numberOfEmployeesWhoMetTarget(self, hours: List[int], target: int) -> int:
-        ans = 0
-        for h in hours:
-            if h >= target:
-                ans += 1
-        return ans
+        return sum(h >= target for h in hours)
        
         """
 某公司有n名員工，編號從0到n-1。每個員工i在公司工作了hours[i]個小時。
