@@ -1,5 +1,7 @@
 <h2><a href="https://leetcode.com/problems/permutations/">46. Permutations</a></h2><h3>Medium</h3><hr><div><p>Given an array <code>nums</code> of distinct integers, return <em>all the possible permutations</em>. You can return the answer in <strong>any order</strong>.</p>
 
+![sloution picture](https://assets.leetcode.com/users/images/f0af1aef-249f-4e08-8504-91f18c18a56e_1598625210.4955542.png)
+
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
 <pre><strong>Input:</strong> nums = [1,2,3]

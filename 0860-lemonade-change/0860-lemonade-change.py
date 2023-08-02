@@ -1,25 +1,25 @@
 class Solution:
     def lemonadeChange(self, bills: List[int]) -> bool:
-        L, B = len(bills), {5: 0, 10: 0, 20: 0}
-        
-        for i in range(L):
-            if bills[i] == 10:
-                if B[5] == 0:
+        L, B = len(bills), {5: 0, 10: 0, 20: 0}  # 初始化擁有的鈔票數量
+        for i in range(L):  # 遍歷每一個顧客
+            if bills[i] == 10:  # 如果顧客支付 10 元
+                if B[5] == 0:  # 如果沒有 5 元鈔票找零，則返回 False
                     return False
                 else:
-                    B[5] -= 1
+                    B[5] -= 1  # 找零 5 元鈔票，減少 5 元的數量
 
-            elif bills[i] == 20:
-                if B[10] != 0 and B[5] != 0:
+            elif bills[i] == 20:  # 如果顧客支付 20 元
+                if B[10] != 0 and B[5] != 0:  # 如果有 10 元和 5 元，找零這兩個
                     B[10] -= 1
                     B[5] -= 1
-                elif B[5] >= 3:
+                elif B[5] >= 3:  # 如果至少有三張 5 元鈔票，找零三張
                     B[5] -= 3
-                else:
+                else:  # 否則無法找零，返回 False
                     return False
-            B[bills[i]] += 1
+            B[bills[i]] += 1  # 增加顧客支付的鈔票數量
 
-        return True
+        return True  # 所有顧客都成功付款，返回 True
+
 
 """
 在檸檬水攤上，每杯檸檬水售價 5 美元。顧客排隊向您購買，並一次訂購一件（按照賬單指定的順序）。
@@ -28,4 +28,7 @@ class Solution:
 請注意，一開始您手頭沒有任何零錢。
 
 給定一個整數數組 bills，其中 bills[i] 是第 i 個客戶支付的賬單，如果您能為每個客戶提供正確的零錢，則返回 true，否則返回 false。
+
+時間複雜度：O(n)，其中 n 是帳單的數量。每個帳單都只處理一次。
+空間複雜度：O(1)，因為儲存鈔票數量的空間是固定的，和帳單數量無關。
 """

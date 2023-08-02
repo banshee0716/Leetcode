@@ -15,3 +15,8 @@ class Solution:
         for i in range(len(nums)):
             # 選取當前數字，並在剩餘數組中繼續選取
             self.helper(nums[:i]+nums[i+1:], temp+[nums[i]], ans)
+
+"""
+時間複雜度為O(n!)，因為一共有n!種可能的組合，
+空間複雜度為O(n)，因為在遞歸過程中最深的層次為n。
+"""
