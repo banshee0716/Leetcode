@@ -4,14 +4,15 @@ class Solution:
         can = capacity
         for i, x in enumerate(plants):
             if can < x:
-                #把步數*2
-                ans += 2*i
+                # 因為如果沒了就要走回去把水裝滿再走回來，所以把步數*2
+                ans += 2 * i
                 can = capacity
             ans += 1
             can -= x
-            
+
         return ans
-    
+
+
 """
 您想用噴壺給花園裡的植物澆水。這些植物排成一排，從左到右標記為 0 到 n - 1，其中第 i 株植物位於 x = i 處。 x = -1 處有一條河流，您可以在那裡重新裝滿噴壺。
 
