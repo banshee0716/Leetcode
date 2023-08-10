@@ -4,33 +4,31 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    def mergeInBetween(
-        self, list1: ListNode, a: int, b: int, list2: ListNode
-    ) -> ListNode:
-        pos, a_node = 0, list1
+    def findIntegers(self, num: int) -> int:
+        # x, y 用來儲存斐波那契數，其中 x 是 F(i), y 是 F(i+1)
+        x, y = 1, 2
+        res = 0  # 初始化結果為0
 
-        # 將 a_node 移動到 list1 中索引為 a - 1 的節點
-        while pos < a - 1:
-            a_node = a_node.next
-            pos += 1
+        # num += 1 是因為我們要計算 [0, num] 之間的數，所以考慮到0所以加1
+        num += 1
 
-        b_node = a_node
+        while num:
+            # 檢查 num 的最後兩位是否為11
+            # 如果是的話，則 res 重置為0，因為我們不考慮含有連續1的數
+            if num & 1 and num & 2:
+                res = 0
 
-        # 將 b_node 移動到 list1 中索引為 b + 1 的節點
-        while pos < b + 1:
-            b_node = b_node.next
-            pos += 1
+            # 這裡加上 x * (num & 1) 是為了累加不含連續1的數的總和
+            # (num & 1) 會檢查 num 的最低位是否為1
+            res += x * (num & 1)
 
-        # 把 list2 連接到 a_node 之後
-        a_node.next = list2
+            # 將 num 右移，去掉其最低位
+            num >>= 1
 
-        # 將 list2 移動到其末尾
-        while list2.next:
-            list2 = list2.next
+            # 更新斐波那契數
+            x, y = y, x + y
 
-        # 把 list2 的末尾節點連接到 b_node
-        list2.next = b_node
-        return list1  # 返回結果的頭節點
+        return res
 
     """
     解題思路:
