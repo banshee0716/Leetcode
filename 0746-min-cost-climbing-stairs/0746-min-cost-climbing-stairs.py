@@ -13,7 +13,7 @@ class Solution:
         
         # 開始動態規劃
         # 對於每一階，計算到達該階梯的最小費用
-        for i in range(2, len(cost)):
+        for i in range(2, n):
             # 到達第i階的最小費用是當前階的費用加上前一階和前兩階的最小值
             dp[i] = cost[i] + min(dp[i-1], dp[i-2])
         
