@@ -1,27 +1,29 @@
+from collections import Counter
+
 class Solution:
+
+    def isequal(self, c: str) -> bool:
+        # 使用Counter計算c中每個字母的頻率
+        c = Counter(c)
+        # 判斷所有字母的頻率是否相同
+        return len(set(c.values())) == 1
+
     def equalFrequency(self, word: str) -> bool:
-        wordC = Counter(word)
-        temp = wordC.copy()
-        for i in wordC:
-            temp[i] -= 1
-            if temp[i] == 0:
-                del temp[i]
-            if len(set(temp.values())) == 1:
+        # 遍歷word的每一個字母
+        for i in range(len(word)):
+            # 嘗試移除第i個字母並檢查剩下的字母的頻率
+            if self.isequal(word[:i] + word[i + 1:]):
                 return True
-            if i not in temp:
-                temp[i] = 0
-            temp[i] += 1
-            
         return False
-        
-        
-"""
-給你一個 0 索引的字符串單詞，由小寫英文字母組成。您需要選擇一個索引並從單詞中刪除該索引處的字母，以便單詞中每個字母出現的頻率相等。
 
-如果可以刪除一個字母以使單詞中所有字母的頻率相等，則返回 true，否則返回 false。
+    
+    """
+解題思路：
 
-筆記：
+遍歷字串的每一個字母，嘗試移除該字母並檢查剩下的字串中的字母頻率是否都相同。
+使用Counter工具來計算每個字母的頻率。
+使用set確保頻率唯一，如果set的大小為1，則所有字母的頻率相同。
 
-字母 x 的頻率是它在字符串中出現的次數。
-您必須恰好刪除一個字母，並且不能選擇什麼也不做。
+時間複雜度：O(n^2)，其中n是字串的長度。這是因為我們遍歷每一個字母，然後使用Counter計算其頻率，Counter的時間複雜度是O(n)。
+空間複雜度：O(n)，Counter會使用O(n)的額外空間
     """
