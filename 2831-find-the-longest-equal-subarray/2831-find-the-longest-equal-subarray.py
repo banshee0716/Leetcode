@@ -1,18 +1,31 @@
+from typing import List
+from collections import defaultdict
+
+
 class Solution:
     def longestEqualSubarray(self, nums: List[int], k: int) -> int:
         n = len(nums)
-        left = 0
-        hm = defaultdict(int)
-        maxCnt = 0
+        left = 0  # 初始化左指針
+        hm = defaultdict(int)  # 初始化哈希表
+        max_cnt = 0  # 初始化 max_cnt
+
+        # 遍歷整個數組
         for right in range(n):
+            # 更新哈希表
             hm[nums[right]] += 1
-            maxCnt = max(maxCnt, hm[nums[right]])
-            if maxCnt + k < right-left+1:
+            # 更新 max_cnt
+            max_cnt = max(max_cnt, hm[nums[right]])
+
+            # 檢查是否需要縮小窗口
+            if max_cnt + k < right - left + 1:
+                # 更新哈希表和左指針
                 hm[nums[left]] -= 1
                 left += 1
-        return maxCnt
 
-        
+        # 最後的結果會是窗口的大小
+        return max_cnt
+
+
 """
 解題思路
 1. 使用滑動窗口的策略來解決這個問題。
