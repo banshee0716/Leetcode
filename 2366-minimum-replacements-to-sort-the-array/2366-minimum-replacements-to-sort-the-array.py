@@ -1,21 +1,21 @@
-from typing import List
-
 class Solution:
     def minimumReplacement(self, nums: List[int]) -> int:
-        # 初始化結果為 0 和上一個界限值
+        # 初始化操作數為 0 和動態上界 prev_bound
         operations = 0
         prev_bound = nums[-1]
 
         # 從倒數第二個元素開始，向前遍歷陣列
         for num in reversed(nums[:-1]):
             # 計算需要多少次操作將 num 分解為小於等於 prev_bound 的數字
+            # 使用巧妙的公式來處理 num 能否被 prev_bound 整除的情況
             no_of_times = (num + prev_bound - 1) // prev_bound
             # 累計操作次數
-            operations += no_of_times - 1
-            # 更新 prev_bound 為下一次迭代所需考慮的界限
-            prev_bound = num // no_of_times
+            operations += no_of_times - 1  # -1 是因為其中一個替換的數字將佔據原來的位置
+            # 更新 prev_bound
+            prev_bound = num // no_of_times  # 確保下一次迭代中我們以最優的方式替換數字
 
         return operations
+
 
         
         
