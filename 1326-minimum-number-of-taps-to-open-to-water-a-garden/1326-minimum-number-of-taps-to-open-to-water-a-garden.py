@@ -1,22 +1,33 @@
+from typing import List
+
 class Solution:
     def minTaps(self, n: int, ranges: List[int]) -> int:
-        arr = [0] * (n + 1)
+        # 初始化 arr 陣列，用於儲存每個點能達到的最遠距離
+        arr = [0] * (n+1)
         for i, r in enumerate(ranges):
             if r == 0:
                 continue
-            left = max(0, i - r)
-            arr[left] = max(arr[left], i + r)
-
-        end, far_can_reach, cnt = 0, 0, 0
+            # 計算這個灌溉設備能覆蓋的左側邊界
+            left = max(0, i-r)
+            # 更新 arr[left]，也就是說，從 left 點出發能到達的最遠距離
+            arr[left] = max(arr[left], i+r)
         
+        # 初始化變數
+        end, far_can_reach, cnt = 0, 0, 0
         for i, reach in enumerate(arr):
+            # 如果 i 超過了 end，表示需要開啟一個新的灌溉設備
             if i > end:
                 if far_can_reach <= end:
-                    return -1
+                    return -1  # 無法覆蓋整個區域
+                # 更新 end 和 cnt
                 end, cnt = far_can_reach, cnt + 1
+            
+            # 更新 far_can_reach，也就是到目前為止能達到的最遠距離
             far_can_reach = max(far_can_reach, reach)
-
+        
+        # 如果 end 還沒達到 n，cnt 需要加 1
         return cnt + (end < n)
+
         
         
         
