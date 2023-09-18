@@ -9,4 +9,5 @@ class Solution:
                 heappop(heap)
         
         return [-i for _, i in sorted(heap, reverse=True)]
+    
         #用minheap去處理，之後再來想要怎麼計算出每一行的參數（Sum()函數）
