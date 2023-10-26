@@ -1,14 +1,14 @@
 class Solution:
-    
-    def kthGrammar(self, N: int, K: int) -> int:
-        if N == 1: 
+    def kthGrammar(self, n: int, k: int) -> int:
+        if n == 1:
             return 0
-        half = 2**(N - 2) 
+        length = 2 **(n-2)
         
-        if K > half:
-            return 1 if self.kthGrammar(N - 1, K - half) == 0 else 0
+        if k <= length:
+            return self.kthGrammar(n-1, k)
         else:
-            return self.kthGrammar(N - 1, K)
+            
+            return 1 - self.kthGrammar(n-1, k - length)
     
     """
 我們建立一個包含 n 行的表（1 索引）。我們先在第一行寫入 0。現在，在每個後續行中，我們查看前一行，並將每次出現的 0 替換為 01，每次出現的 1 替換為 10。
