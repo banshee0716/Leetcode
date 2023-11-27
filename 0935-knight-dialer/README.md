@@ -1,0 +1,41 @@
+<h2><a href="https://leetcode.com/problems/knight-dialer/">935. Knight Dialer</a></h2><h3>Medium</h3><hr><div><p data-immersive-translate-effect="1" data-immersive_translate_walked="a2bdf770-7c85-44ab-a9f6-9a0d9ea9b34e">The chess knight has a <strong data-immersive-translate-effect="1" data-immersive_translate_walked="a2bdf770-7c85-44ab-a9f6-9a0d9ea9b34e">unique movement</strong>,&nbsp;it may move two squares vertically and one square horizontally, or two squares horizontally and one square vertically (with both forming the shape of an <strong data-immersive-translate-effect="1" data-immersive_translate_walked="a2bdf770-7c85-44ab-a9f6-9a0d9ea9b34e">L</strong>). The possible movements of chess knight are shown in this diagaram:<font class="notranslate immersive-translate-target-wrapper" lang="zh-TW" data-immersive-translate-translation-element-mark="1"><br><font class="notranslate immersive-translate-target-translation-theme-none immersive-translate-target-translation-block-wrapper-theme-none immersive-translate-target-translation-block-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-none-inner" data-immersive-translate-translation-element-mark="1">國際象棋騎士有一個獨特的動作，它可以垂直移動兩個方格，水平移動一個方格，或者水平移動兩個方格，垂直移動一個方格（兩者都形成L形）。國際象棋騎士的可能動作顯示在此diagaram中：</font></font></font></p>
+
+<p data-immersive-translate-effect="1" data-immersive_translate_walked="a2bdf770-7c85-44ab-a9f6-9a0d9ea9b34e">A chess knight can move as indicated in the chess diagram below:<font class="notranslate immersive-translate-target-wrapper" lang="zh-TW" data-immersive-translate-translation-element-mark="1"><br><font class="notranslate immersive-translate-target-translation-theme-none immersive-translate-target-translation-block-wrapper-theme-none immersive-translate-target-translation-block-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-none-inner" data-immersive-translate-translation-element-mark="1">國際象棋騎士可以按照下面的國際象棋圖所示移動：</font></font></font></p>
+<img alt="" src="https://assets.leetcode.com/uploads/2020/08/18/chess.jpg" style="width: 402px; height: 402px;">
+<p data-immersive-translate-effect="1" data-immersive_translate_walked="a2bdf770-7c85-44ab-a9f6-9a0d9ea9b34e">We have a chess knight and a phone pad as shown below, the knight <strong data-immersive-translate-effect="1" data-immersive_translate_walked="a2bdf770-7c85-44ab-a9f6-9a0d9ea9b34e">can only stand on a numeric cell</strong>&nbsp;(i.e. blue cell).<font class="notranslate immersive-translate-target-wrapper" lang="zh-TW" data-immersive-translate-translation-element-mark="1"><br><font class="notranslate immersive-translate-target-translation-theme-none immersive-translate-target-translation-block-wrapper-theme-none immersive-translate-target-translation-block-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-none-inner" data-immersive-translate-translation-element-mark="1">我們有一個國際象棋騎士和一個電話墊，如下圖所示，騎士只能站在一個數位單元格（即藍色單元格）上。</font></font></font></p>
+<img alt="" src="https://assets.leetcode.com/uploads/2020/08/18/phone.jpg" style="width: 242px; height: 322px;">
+<p data-immersive-translate-effect="1" data-immersive_translate_walked="a2bdf770-7c85-44ab-a9f6-9a0d9ea9b34e">Given an integer <code data-immersive-translate-effect="1" data-immersive_translate_walked="a2bdf770-7c85-44ab-a9f6-9a0d9ea9b34e">n</code>, return how many distinct phone numbers of length <code data-immersive-translate-effect="1" data-immersive_translate_walked="a2bdf770-7c85-44ab-a9f6-9a0d9ea9b34e">n</code> we can dial.<font class="notranslate immersive-translate-target-wrapper" lang="zh-TW" data-immersive-translate-translation-element-mark="1"><br><font class="notranslate immersive-translate-target-translation-theme-none immersive-translate-target-translation-block-wrapper-theme-none immersive-translate-target-translation-block-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-none-inner" data-immersive-translate-translation-element-mark="1">給定一個整數 <code data-immersive-translate-effect="1" data-immersive_translate_walked="a2bdf770-7c85-44ab-a9f6-9a0d9ea9b34e">n</code> ，返回我們可以撥打多少個不同長度 <code data-immersive-translate-effect="1" data-immersive_translate_walked="a2bdf770-7c85-44ab-a9f6-9a0d9ea9b34e">n</code> 的電話號碼。</font></font></font></p>
+
+<p data-immersive-translate-effect="1" data-immersive_translate_walked="a2bdf770-7c85-44ab-a9f6-9a0d9ea9b34e">You are allowed to place the knight <strong data-immersive-translate-effect="1" data-immersive_translate_walked="a2bdf770-7c85-44ab-a9f6-9a0d9ea9b34e">on any numeric cell</strong> initially and then you should perform <code data-immersive-translate-effect="1" data-immersive_translate_walked="a2bdf770-7c85-44ab-a9f6-9a0d9ea9b34e">n - 1</code> jumps to dial a number of length <code data-immersive-translate-effect="1" data-immersive_translate_walked="a2bdf770-7c85-44ab-a9f6-9a0d9ea9b34e">n</code>. All jumps should be <strong data-immersive-translate-effect="1" data-immersive_translate_walked="a2bdf770-7c85-44ab-a9f6-9a0d9ea9b34e">valid</strong> knight jumps.<font class="notranslate immersive-translate-target-wrapper" lang="zh-TW" data-immersive-translate-translation-element-mark="1"><br><font class="notranslate immersive-translate-target-translation-theme-none immersive-translate-target-translation-block-wrapper-theme-none immersive-translate-target-translation-block-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-none-inner" data-immersive-translate-translation-element-mark="1">您可以最初將騎士放在任何數位儲存格上，然後您應該執行 <code data-immersive-translate-effect="1" data-immersive_translate_walked="a2bdf770-7c85-44ab-a9f6-9a0d9ea9b34e">n - 1</code> 跳躍以撥出一定長度 <code data-immersive-translate-effect="1" data-immersive_translate_walked="a2bdf770-7c85-44ab-a9f6-9a0d9ea9b34e">n</code> 的長度。所有跳躍都應該是有效的騎士跳躍。</font></font></font></p>
+
+<p data-immersive-translate-effect="1" data-immersive_translate_walked="a2bdf770-7c85-44ab-a9f6-9a0d9ea9b34e">As the answer may be very large, <strong data-immersive-translate-effect="1" data-immersive_translate_walked="a2bdf770-7c85-44ab-a9f6-9a0d9ea9b34e">return the answer modulo</strong> <code data-immersive-translate-effect="1" data-immersive_translate_walked="a2bdf770-7c85-44ab-a9f6-9a0d9ea9b34e">10<sup>9</sup> + 7</code>.<font class="notranslate immersive-translate-target-wrapper" lang="zh-TW" data-immersive-translate-translation-element-mark="1"><br><font class="notranslate immersive-translate-target-translation-theme-none immersive-translate-target-translation-block-wrapper-theme-none immersive-translate-target-translation-block-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-none-inner" data-immersive-translate-translation-element-mark="1">由於答案可能非常大，因此返回答案模 <code data-immersive-translate-effect="1" data-immersive_translate_walked="a2bdf770-7c85-44ab-a9f6-9a0d9ea9b34e">10<sup>9</sup> + 7</code> 。</font></font></font></p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><strong>Input:</strong> n = 1
+<strong>Output:</strong> 10
+<strong>Explanation:</strong> We need to dial a number of length 1, so placing the knight over any numeric cell of the 10 cells is sufficient.
+</pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><strong>Input:</strong> n = 2
+<strong>Output:</strong> 20
+<strong>Explanation:</strong> All the valid number we can dial are [04, 06, 16, 18, 27, 29, 34, 38, 40, 43, 49, 60, 61, 67, 72, 76, 81, 83, 92, 94]
+</pre>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<pre><strong>Input:</strong> n = 3131
+<strong>Output:</strong> 136006598
+<strong>Explanation:</strong> Please take care of the mod.
+</pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= n &lt;= 5000</code></li>
+</ul>
+</div>
