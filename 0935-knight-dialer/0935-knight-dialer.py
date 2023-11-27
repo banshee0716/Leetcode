@@ -18,6 +18,10 @@ class Solution:
 
         # 計算最終結果
         return sum(dp[(n, i)] for i in range(10)) % MOD
+    
+    
+    
+
 
 """
 解題思路：
@@ -38,4 +42,6 @@ class Solution:
 
 空間複雜度分析：
 這個算法使用了一個字典來存儲中間結果，字典的大小最多為 10n，所以空間複雜度為 O(n)。
+
+
 """
