@@ -1,0 +1,55 @@
+<h2><a href="https://leetcode.com/problems/determine-if-two-strings-are-close/">1657. Determine if Two Strings Are Close<font class="notranslate immersive-translate-target-wrapper" lang="zh-TW" data-immersive-translate-translation-element-mark="1"><br><font class="notranslate immersive-translate-target-translation-theme-none immersive-translate-target-translation-block-wrapper-theme-none immersive-translate-target-translation-block-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-none-inner" data-immersive-translate-translation-element-mark="1">1657. 確定兩根弦是否接近</font></font></font></a></h2><h3>Medium</h3><hr><div><p data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148" data-immersive-translate-paragraph="1">Two strings are considered <strong data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148">close</strong> if you can attain one from the other using the following operations:<font class="notranslate immersive-translate-target-wrapper" lang="zh-TW" data-immersive-translate-translation-element-mark="1"><br><font class="notranslate immersive-translate-target-translation-theme-none immersive-translate-target-translation-block-wrapper-theme-none immersive-translate-target-translation-block-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-none-inner" data-immersive-translate-translation-element-mark="1">如果可以使用以下操作從另一個字串獲取兩個字元串，則認為兩個字元串很接近：</font></font></font></p>
+
+<ul>
+	<li data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148" data-immersive-translate-paragraph="1">Operation 1: Swap any two <strong data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148">existing</strong> characters.
+
+	<font class="notranslate immersive-translate-target-wrapper" lang="zh-TW" data-immersive-translate-translation-element-mark="1"><br><font class="notranslate immersive-translate-target-translation-theme-none immersive-translate-target-translation-block-wrapper-theme-none immersive-translate-target-translation-block-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-none-inner" data-immersive-translate-translation-element-mark="1">操作 1：交換任意兩個現有字元。</font></font></font><ul data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148">
+		<li data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148" data-immersive-translate-paragraph="1">For example, <code data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148">a<u>b</u>cd<u>e</u> -&gt; a<u>e</u>cd<u>b</u></code><font class="notranslate immersive-translate-target-wrapper" lang="zh-TW" data-immersive-translate-translation-element-mark="1"><font class="notranslate" data-immersive-translate-translation-element-mark="1">&nbsp;</font><font class="notranslate immersive-translate-target-translation-theme-none immersive-translate-target-translation-inline-wrapper-theme-none immersive-translate-target-translation-inline-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-none-inner" data-immersive-translate-translation-element-mark="1">例如 <code data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148">a<u>b</u>cd<u>e</u> -&gt; a<u>e</u>cd<u>b</u></code> </font></font></font></li>
+	</ul>
+	</li>
+	<li data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148" data-immersive-translate-paragraph="1">Operation 2: Transform <strong data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148">every</strong> occurrence of one <strong data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148">existing</strong> character into another <strong data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148">existing</strong> character, and do the same with the other character.
+	<font class="notranslate immersive-translate-target-wrapper" lang="zh-TW" data-immersive-translate-translation-element-mark="1"><br><font class="notranslate immersive-translate-target-translation-theme-none immersive-translate-target-translation-block-wrapper-theme-none immersive-translate-target-translation-block-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-none-inner" data-immersive-translate-translation-element-mark="1">操作 2：將一個現有字元的每次出現轉換為另一個現有字元，並對另一個字元執行相同的操作。</font></font></font><ul data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148">
+		<li data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148" data-immersive-translate-paragraph="1">For example, <code data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148"><u>aa</u>c<u>abb</u> -&gt; <u>bb</u>c<u>baa</u></code> (all <code data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148">a</code>'s turn into <code data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148">b</code>'s, and all <code data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148">b</code>'s turn into <code data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148">a</code>'s)<font class="notranslate immersive-translate-target-wrapper" lang="zh-TW" data-immersive-translate-translation-element-mark="1"><br><font class="notranslate immersive-translate-target-translation-theme-none immersive-translate-target-translation-block-wrapper-theme-none immersive-translate-target-translation-block-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-none-inner" data-immersive-translate-translation-element-mark="1">例如， <code data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148"><u>aa</u>c<u>abb</u> -&gt; <u>bb</u>c<u>baa</u></code> （all 's 變成 <code data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148">b</code> 's，all <code data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148">b</code> <code data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148">a</code> 's 變成 <code data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148">a</code> 's）</font></font></font></li>
+	</ul>
+	</li>
+</ul>
+
+<p data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148" data-immersive-translate-paragraph="1">You can use the operations on either string as many times as necessary.<font class="notranslate immersive-translate-target-wrapper" lang="zh-TW" data-immersive-translate-translation-element-mark="1"><br><font class="notranslate immersive-translate-target-translation-theme-none immersive-translate-target-translation-block-wrapper-theme-none immersive-translate-target-translation-block-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-none-inner" data-immersive-translate-translation-element-mark="1">您可以根據需要多次對任一字串使用操作。</font></font></font></p>
+
+<p data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148" data-immersive-translate-paragraph="1">Given two strings, <code data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148">word1</code> and <code data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148">word2</code>, return <code data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148">true</code><em data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148"> if </em><code data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148">word1</code><em data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148"> and </em><code data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148">word2</code><em data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148"> are <strong data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148">close</strong>, and </em><code data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148">false</code><em data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148"> otherwise.</em><font class="notranslate immersive-translate-target-wrapper" lang="zh-TW" data-immersive-translate-translation-element-mark="1"><br><font class="notranslate immersive-translate-target-translation-theme-none immersive-translate-target-translation-block-wrapper-theme-none immersive-translate-target-translation-block-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-none-inner" data-immersive-translate-translation-element-mark="1">給定兩個字串和 <code data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148">word1</code> <code data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148">word2</code> ，如果 <code data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148">word1</code> 和 <code data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148">word2</code> 接近，則返回， <code data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148">false</code> 否則返回 <code data-immersive-translate-walked="bb211ffa-80a9-41af-a931-39c263ebe148">true</code> 。</font></font></font></p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><strong>Input:</strong> word1 = "abc", word2 = "bca"
+<strong>Output:</strong> true
+<strong>Explanation:</strong> You can attain word2 from word1 in 2 operations.
+Apply Operation 1: "a<u>bc</u>" -&gt; "a<u>cb</u>"
+Apply Operation 1: "<u>a</u>c<u>b</u>" -&gt; "<u>b</u>c<u>a</u>"
+</pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><strong>Input:</strong> word1 = "a", word2 = "aa"
+<strong>Output:</strong> false
+<strong>Explanation: </strong>It is impossible to attain word2 from word1, or vice versa, in any number of operations.
+</pre>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<pre><strong>Input:</strong> word1 = "cabbba", word2 = "abbccc"
+<strong>Output:</strong> true
+<strong>Explanation:</strong> You can attain word2 from word1 in 3 operations.
+Apply Operation 1: "ca<u>b</u>bb<u>a</u>" -&gt; "ca<u>a</u>bb<u>b</u>"
+<code>Apply Operation 2: "</code><u>c</u>aa<u>bbb</u>" -&gt; "<u>b</u>aa<u>ccc</u>"
+Apply Operation 2: "<u>baa</u>ccc" -&gt; "<u>abb</u>ccc"
+</pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= word1.length, word2.length &lt;= 10<sup>5</sup></code></li>
+	<li><code>word1</code> and <code>word2</code> contain only lowercase English letters.</li>
+</ul>
+</div>
