@@ -3,34 +3,47 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
-class Solution:
-    def doubleIt(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        # 如果頭節點的值大於4，則加一個值為0的節點作為新的頭節點
-        if head.val > 4:
-            head = ListNode(0, head)
-        
-        # 初始化節點指針
-        node = head
-        # 遍歷整個鏈表
-        while node:
-            # 翻倍當前節點的值，並對10取模
-            node.val = (node.val * 2) % 10
-            
-            # 檢查下一個節點，如果其值大於4則進位（即當前節點的值加1）
-            if node.next and node.next.val > 4:
-                node.val += 1
-            
-            # 移動到下一個節點
-            node = node.next
-            
-        return head
-    """
-    
-解題思路
-1. 首先，檢查頭節點（head）的值。如果它大於4，我們會需要進位，因此在鏈表前面加一個值為0的新節點。
-2. 然後，我們遍歷整個鏈表，每次都將當前節點的值翻倍，並對10取模（為了避免數字過大）。這會得到個位數。
-3. 在遍歷過程中，如果下一個節點的值大於4，那麼當前節點應該要加1（進位）。
 
-時間複雜度：O(n)，其中 n 是鏈表的長度。我們只需要遍歷一次鏈表。
-空間複雜度：O(1)，因為我們只使用了常數個額外的變量。
-    """
+class Solution:
+    def doubleIt(self, head: ListNode) -> ListNode:
+        # Reverse the linked list
+        reversed_list = self.reverse_list(head)
+        # Initialize variables to track carry and previous node
+        carry = 0
+        current, previous = reversed_list, None
+
+        # Traverse the reversed linked list
+        while current:
+            # Calculate the new value for the current node
+            new_value = current.val * 2 + carry
+            # Update the current node's value
+            current.val = new_value % 10
+            # Update carry for the next iteration
+            carry = 1 if new_value > 9 else 0
+            # Move to the next node
+            previous, current = current, current.next
+
+        # If there's a carry after the loop, add an extra node
+        if carry:
+            previous.next = ListNode(carry)
+
+        # Reverse the list again to get the original order
+        result = self.reverse_list(reversed_list)
+
+        return result
+
+    # Method to reverse the linked list
+    def reverse_list(self, node: ListNode) -> ListNode:
+        previous, current = None, node
+
+        # Traverse the original linked list
+        while current:
+            # Store the next node
+            next_node = current.next
+            # Reverse the link
+            current.next = previous
+            # Move to the next nodes
+            previous, current = current, next_node
+
+        # Previous becomes the new head of the reversed list
+        return previous
