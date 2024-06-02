@@ -3,4 +3,4 @@ class Solution:
         """
         Do not return anything, modify s in-place instead.
         """
-        return s.reverse()
+        s[::1] = s[::-1]
