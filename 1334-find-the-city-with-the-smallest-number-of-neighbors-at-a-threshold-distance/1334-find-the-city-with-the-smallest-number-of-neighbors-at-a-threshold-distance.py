@@ -40,3 +40,17 @@ class Solution:
                 best_city = city
 
         return best_city
+    
+    """
+    
+Time Complexity:
+
+O(n^3) where n is the number of cities.
+The Floyd-Warshall algorithm has three nested loops, each iterating n times.
+The final iteration to count reachable cities is O(n^2), which is dominated by the O(n^3) of Floyd-Warshall.
+
+Space Complexity:
+
+O(n^2) for the distance matrix.
+We store distances between all pairs of cities in the 'distances' 2D list.
+    """
