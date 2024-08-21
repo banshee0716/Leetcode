@@ -1,32 +1,20 @@
 class Solution:
     def stoneGameII(self, piles: List[int]) -> int:
-        N = len(piles)
-        self.dp = {}
-
-        def recursiveStoneGame(start, M):            
-            if start >= N:
-                return 0
-            
-            # take all if possible
-            if N - start <= 2*M:
-                return sum(piles[start:])
-            
-            # memoization
-            if (start, M) in self.dp:
-                return self.dp[(start, M)]
-
-            my_score = 0
-            total_score = sum(piles[start:])
-            # the opponent can take [1, 2*M] stones
-            for x in range(1, 2*M+1):
-                # get opponent's score
-                opponent_score = recursiveStoneGame(start+x, max(x, M))
-                # maintains max my_score
-                my_score = max(my_score, total_score - opponent_score)
-                
-            self.dp[(start, M)] = my_score
-                
-            return my_score
+        n = len(piles)
         
+        dp = [[0] * (n + 1) for _ in range(n)]
+        suffix_sum = [0] * n
+        suffix_sum[-1] = piles[-1]
         
-        return recursiveStoneGame(0, 1)
+        for i in range(n - 2, -1, -1):
+            suffix_sum[i] = suffix_sum[i + 1] + piles[i]
+        
+        for i in range(n - 1, -1, -1):
+            for m in range(1, n + 1):
+                if i + 2 * m >= n:
+                    dp[i][m] = suffix_sum[i]
+                else:
+                    for x in range(1, 2 * m + 1):
+                        dp[i][m] = max(dp[i][m], suffix_sum[i] - dp[i + x][max(m, x)])
+        
+        return dp[0][1]
