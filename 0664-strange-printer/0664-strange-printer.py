@@ -1,40 +1,29 @@
-import sys
+from typing import List
 
 class Solution:
     def strangePrinter(self, s: str) -> int:
+        # Remove consecutive duplicate characters to optimize the problem
+        s = ''.join(ch for i, ch in enumerate(s) if i == 0 or ch != s[i-1])
         n = len(s)
-        if not s:
-            # 如果字符串為空，則返回0
-            return 0
-
-        # 用最大可能的整數初始化 dp 陣列
-        dp = [[sys.maxsize] * n for _ in range(n)]
-
-        for i in range(n):
-            # 打印一個字符需要一個轉數
-            dp[i][i] = 1
-
-        # 迭代所有長度大於1的子串
-        for l in range(2, n + 1):
-            for i in range(n - l + 1):
-                j = i + l - 1
-                # 假設我們需要比 dp[i+1][j] 多一個轉數
-                dp[i][j] = dp[i + 1][j] + 1
-
-                for k in range(i + 1, j + 1):
-                    if s[i] == s[k]:
-                        # 如果在位置 k 後找到與 s[i] 相同的字符，則我們取目前的 dp[i][j] 和 dp[i][k-1] + dp[k+1][j] 的最小值
+        
+        # Initialize the DP table
+        dp: List[List[int]] = [[0] * n for _ in range(n)]
+        
+        # Build the DP table bottom-up
+        for i in range(n - 1, -1, -1):  # Start from the end of the string
+            dp[i][i] = 1  # Base case: single character requires 1 turn
+            for j in range(i + 1, n):  # Consider all substrings starting from i
+                # Initial assumption: print each character separately
+                dp[i][j] = dp[i][j - 1] + 1
+                
+                # Try to optimize by finding matching characters
+                for k in range(i, j):
+                    if s[k] == s[j]:
+                        # If characters match, we can potentially reduce turns
                         dp[i][j] = min(
                             dp[i][j],
-                            dp[i][k - 1] + (dp[k + 1][j] if j > k else 0),
+                            dp[i][k] + (dp[k + 1][j - 1] if k + 1 <= j - 1 else 0)
                         )
-
-        # 返回打印字符串 s 所需的最小轉數
+        
+        # The minimum turns for the entire string is stored in dp[0][n-1]
         return dp[0][n - 1]
-    
-    
-"""
-這個問題使用動態規劃方法來解決。關鍵思想在於反向思考，即如果子串的最後一個字符與第一個字符相同，則我們不需要額外的轉換。
-時間複雜度是 O(n^3)，因為有 n^2 個子問題（s 的子串），並且每個子問題的解決時間是 O(n)（我們需要檢查子串中的每個字符來更新 dp[i][j]）。
-空間複雜度是 O(n^2)，因為使用了一個 2D dp 陣列。
-"""
