@@ -1,18 +1,25 @@
 class Solution:
-    def findKthNumber(self, n: int, k: int) -> int:
-        
-        def fn(x): 
-            """Return node counts in denary trie."""
-            ans, diff = 0, 1
-            while x <= n: 
-                ans += min(n - x + 1, diff)
-                x *= 10 
-                diff *= 10 
-            return ans 
-        
-        x = 1
-        while k > 1: 
-            cnt = fn(x)
-            if k > cnt: k -= cnt; x += 1
-            else: k -= 1; x *= 10 
-        return x
+    def findKthNumber(self, n, k):
+        def calcSteps(n, curr, next):
+            steps = 0
+            while curr <= n:
+                steps += min(n + 1, next) - curr
+                curr *= 10
+                next *= 10
+            return steps
+
+        curr = 1
+        k -= 1  # 第一个数字已经是 1
+
+        while k > 0:
+            steps = calcSteps(n, curr, curr + 1)
+            if steps <= k:
+                # 跳过当前前缀下的所有数字，移动到下一个兄弟节点
+                curr += 1
+                k -= steps
+            else:
+                # 深入子节点
+                curr *= 10
+                k -= 1  # 减去当前节点占用的一个位置
+
+        return curr
