@@ -1,19 +1,29 @@
 class Solution:
     def resultsArray(self, nums: List[int], k: int) -> List[int]:
-        res = []
-        l = 0 
-        consec_cnt = 1
+        n = len(nums)
+        result = []
+        if k == 1:
+            return nums[:]
+        if n < k:
+            return result
+        diff = [nums[i + 1] - nums[i] for i in range(n - 1)]
+        bad = 0
         
-        for r in range(len(nums)):
-            if r > 0 and nums[r-1] + 1 == nums[r]:
-                consec_cnt += 1
-            
-            if r - l + 1 > k:
-                if nums[l] + 1 == nums[l + 1]:
-                    consec_cnt -= 1
-                l += 1
-
-            if r - l + 1 == k:
-                res.append(nums[r] if consec_cnt == k else -1)
-        return res
-                
+        for i in range(k - 1):
+            if diff[i] != 1:
+                bad += 1
+        for i in range(n - k + 1):
+            if bad == 0:
+                result.append(nums[i + k - 1])
+            else:
+                result.append(-1)
+            if i + k - 1 < n - 1:
+                if diff[i] != 1:
+                    bad -= 1
+                if diff[i + k - 1] != 1:
+                    bad += 1
+            else:
+                if diff[i] != 1:
+                    bad -= 1
+        
+        return result
